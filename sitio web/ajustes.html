@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecofresh - Configuración</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #fff; color: #111; }
+        
+        header { background-color: #1a4a2e; color: white; padding: 15px 20px; display: flex; align-items: center; }
+        .back-btn { text-decoration: none; color: white; font-size: 20px; margin-right: 15px; }
+        
+        .menu-container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; }
+
+        .section-header { background-color: #f3f3f3; padding: 15px 20px; border-bottom: 1px solid #ddd; }
+        .section-header h3 { margin: 0; font-size: 16px; color: #555; text-transform: uppercase; }
+
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; text-decoration: none; color: #111; font-size: 15px; border-bottom: 1px solid #eee; }
+        .menu-item:hover { background-color: #f7f7f7; }
+        
+        .chevron { color: #888; font-weight: bold; }
+
+        .config-row { display: flex; align-items: center; padding: 15px 20px; gap: 15px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .config-row:hover { background-color: #f7f7f7; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">←</a>
+        <span>Configuración del Sitio</span>
+    </header>
+
+    <div class="menu-container">
+        
+        <div class="section-header">
+            <h3>Preferencias</h3>
+        </div>
+        
+        <div class="config-row">
+            🌐 <span><strong>Idioma:</strong> Español</span>
+        </div>
+        
+        <div class="config-row">
+            🇬🇹 <span><strong>País/Región:</strong> Guatemala</span>
+        </div>
+
+        <div class="config-row">
+            🔔 <span>Notificaciones de Ofertas</span>
+        </div>
+
+        <div class="section-header">
+            <h3>Legal y Políticas</h3>
+        </div>
+
+        <a href="#" class="menu-item">
+            <span>Condiciones de Uso</span>
+            <span class="chevron">></span>
+        </a>
+        <a href="#" class="menu-item">
+            <span>Aviso de Privacidad</span>
+            <span class="chevron">></span>
+        </a>
+        <a href="#" class="menu-item">
+            <span>Cookies y Publicidad</span>
+            <span class="chevron">></span>
+        </a>
+        <a href="#" class="menu-item">
+            <span>Retiros y alertas de seguridad del producto</span>
+            <span class="chevron">></span>
+        </a>
+
+        <div class="section-header">
+            <h3>Acerca de</h3>
+        </div>
+        <div class="menu-item">
+            <span>Versión de la App</span>
+            <span style="color: #888;">2.0.26-eco</span>
+        </div>
+    </div>
+
+</body>
+</html>

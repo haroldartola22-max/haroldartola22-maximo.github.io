@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecofresh - Categorías Detalladas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f3f3f3; }
+        header { background-color: #1a4a2e; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; text-transform: uppercase; text-decoration: none; color: white; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-size: 14px; }
+        
+        main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+        
+        /* Contenedor de Tarjetas de Selección */
+        .grid-seleccion { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 40px; }
+        .tarjeta-filtro { background: white; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 2px solid transparent; transition: 0.3s; }
+        .tarjeta-filtro:hover { border-color: #1a4a2e; transform: translateY(-3px); }
+        .tarjeta-filtro.activa { border-color: #1a4a2e; background-color: #e8f5e9; }
+
+        /* Grid de Productos Filtrados */
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .producto { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
+        .precio { color: #B12704; font-weight: bold; font-size: 18px; display: block; margin: 10px 0; }
+        .btn-add { background: #2bc3f1; border: 1px solid #13ced4; border-radius: 20px; padding: 8px; width: 100%; cursor: pointer; font-weight: bold; }
+        
+        .oculto { display: none; }
+        .banner-categoria { background: #1a4a2e; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ECOFRESH</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="carrito.html">Carrito</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="banner-categoria">
+            <h1 id="titulo-cat">Todas las Categorías</h1>
+            <p>Selecciona una sección para ver los productos ecológicos disponibles.</p>
+        </div>
+
+        <!-- Botones de Filtro -->
+        <div class="grid-seleccion">
+            <div class="tarjeta-filtro" onclick="filtrar('Cocina', this)">🍳<br>Cocina</div>
+            <div class="tarjeta-filtro" onclick="filtrar('Baño', this)">🚿<br>Baño</div>
+            <div class="tarjeta-filtro" onclick="filtrar('Pisos', this)">🧹<br>Pisos</div>
+            <div class="tarjeta-filtro" onclick="filtrar('Personal', this)">🧼<br>Higiene Personal</div>
+            <div class="tarjeta-filtro" onclick="filtrar('Lavandería', this)">🧺<br>Lavandería</div>
+        </div>
+
+        <!-- Lista de Productos -->
+        <div class="grid-productos" id="contenedor-productos">
+            <!-- Los productos se cargarán aquí con JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        const productosData = {
+            'Cocina': [
+                {n: 'Detergente lavatrastes biodegradable', p: 35},
+                {n: 'Esponjas de fibra vegetal', p: 15},
+                {n: 'Escobas de cerdas naturales', p: 45},
+                {n: 'Desengrasante botánico', p: 40},
+                {n: 'Paños de algodón orgánico', p: 25},
+                {n: 'Bicarbonato de sodio granel', p: 20},
+                {n: 'Vinagre blanco limpieza', p: 18},
+                {n: 'Jabón de castilla líquido', p: 55},
+                {n: 'Cepillos de madera natural', p: 22},
+                {n: 'Jabón en barra sólido cocina', p: 12}
+            ],
+            'Baño': [
+                {n: 'Limpiador inodoros biodegradable', p: 38},
+                {n: 'Pastilla desinfectante natural', p: 15},
+                {n: 'Desincrustante ácido cítrico', p: 30},
+                {n: 'Limpiador azulejos ecológico', p: 35},
+                {n: 'Esponjas de lufa natural', p: 18},
+                {n: 'Cepillo inodoro bambú', p: 40},
+                {n: 'Paños microfibra reciclada', p: 20},
+                {n: 'Aceites esenciales aromatizar', p: 45},
+                {n: 'Vinagre mamparas y grifos', p: 22}
+            ],
+            'Pisos': [
+                {n: 'Jabón de potasa cerámica', p: 45},
+                {n: 'Limpiador jabón de coco', p: 40},
+                {n: 'Fregona algodón orgánico', p: 60},
+                {n: 'Cera de abejas madera', p: 75},
+                {n: 'Jabón negro multiusos', p: 50},
+                {n: 'Aceite de linaza madera', p: 65},
+                {n: 'Cubo materiales reciclados', p: 85},
+                {n: 'Escoba fibra de coco', p: 40},
+                {n: 'Bayetas fibras naturales', p: 15},
+                {n: 'Infusión romero natural', p: 10}
+            ],
+            'Personal': [
+                {n: 'Champú sólido pastilla', p: 55},
+                {n: 'Acondicionador sin plástico', p: 60},
+                {n: 'Jabón corporal artesanal', p: 25},
+                {n: 'Desodorante crema vidrio', p: 45},
+                {n: 'Pasta dientes tabletas', p: 40},
+                {n: 'Cepillo de dientes bambú', p: 15},
+                {n: 'Hilo dental compostable', p: 20},
+                {n: 'Esponjas marinas naturales', p: 35},
+                {n: 'Discos desmaquillantes reutilizables', p: 30},
+                {n: 'Crema manteca de karité', p: 70}
+            ],
+            'Lavandería': [
+                {n: 'Detergente líquido granel', p: 80},
+                {n: 'Nueces de lavado natural', p: 50},
+                {n: 'Percarbonato blanqueador', p: 35},
+                {n: 'Vinagre suavizante natural', p: 15},
+                {n: 'Bolas de lana secadora', p: 45},
+                {n: 'Cepillo manchas madera', p: 25},
+                {n: 'Bolsas lavado algodón', p: 30},
+                {n: 'Jabón de pan manchas', p: 12},
+                {n: 'Cesto de mimbre/bambú', p: 120},
+                {n: 'Perchas madera reciclada', p: 40}
+            ]
+        };
+
+        function filtrar(categoria, elemento) {
+            // Actualizar interfaz
+            document.querySelectorAll('.tarjeta-filtro').forEach(t => t.classList.remove('activa'));
+            elemento.classList.add('activa');
+            document.getElementById('titulo-cat').innerText = "Categoría: " + categoria;
+
+            // Cargar productos
+            const contenedor = document.getElementById('contenedor-productos');
+            contenedor.innerHTML = ""; // Limpiar antes de cargar
+
+            productosData[categoria].forEach(prod => {
+                contenedor.innerHTML += `
+                    <div class="producto">
+                        <div style="height:100px; background:#eee; margin-bottom:10px; display:flex; align-items:center; justify-content:center; border-radius:5px">📦</div>
+                        <strong>${prod.n}</strong>
+                        <span class="precio">Q${prod.p}.00</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('${prod.n}', ${prod.p})">Agregar al carrito</button>
+                    </div>
+                `;
+            });
+        }
+
+        // Reutilizamos la función de agregar al carrito para que funcione con el index.html
+        function agregarAlCarrito(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('miCarrito')) || [];
+            carrito.push({ nombre: nombre, precio: precio });
+            localStorage.setItem('miCarrito', JSON.stringify(carrito));
+            alert('¡' + nombre + ' agregado!');
+        }
+
+        // Cargar cocina por defecto al abrir
+        window.onload = () => filtrar('Cocina', document.querySelector('.tarjeta-filtro'));
+    </script>
+</body>
+</html>

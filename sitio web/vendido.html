@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecofresh - Los Más Vendidos</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f3f3f3; }
+        
+        header { background-color: #1a4a2e; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: white; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-size: 14px; }
+
+        .encabezado-top {
+            background-color: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .grid-vendidos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta-best {
+            background: white;
+            border-radius: 4px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        /* Etiqueta Best Seller estilo Amazon */
+        .badge-best {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #24a4fa;
+            color: white;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 0 0 4px 0;
+        }
+
+        .img-sim { height: 150px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; font-size: 60px; margin-bottom: 15px; }
+        
+        .rank { color: #565959; font-size: 13px; font-weight: bold; }
+        .nombre-p { font-size: 16px; color: #007185; margin: 10px 0; display: block; }
+        
+        /* Estrellas de calificación */
+        .estrellas { color: #41ad72; font-size: 18px; margin-bottom: 5px; }
+        .ventas-count { color: #565959; font-size: 12px; margin-left: 5px; }
+
+        .precio { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 15px; display: block; }
+
+        .btn-compra {
+            background: #0c9eca;
+            border: 1px solid #82bdf5;
+            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-compra:hover { background: #62bce6; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ECOFRESH</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="categoria.html">Categorías</a>
+            <a href="ofertas.html">Ofertas</a>
+            <a href="carrito.html">Carrito</a>
+        </nav>
+    </header>
+
+    <div class="encabezado-top">
+        <main style="padding:0">
+            <h1>Los más vendidos en Ecofresh</h1>
+            <p>Nuestros productos más populares basados en ventas. Actualizado cada hora.</p>
+        </main>
+    </div>
+
+    <main>
+        <div class="grid-vendidos" id="contenedor-vendidos">
+            <!-- JavaScript cargará los favoritos aquí -->
+        </div>
+    </main>
+
+    <script>
+        // Seleccionamos los productos más emblemáticos de tu lista
+        const masVendidos = [
+            {n: 'Cepillo de dientes de bambú', p: 15, i: '🎋', r: '4.8', v: '12,403', top: 1},
+            {n: 'Detergente lavatrastes biodegradable', p: 35, i: '🧼', r: '4.9', v: '10,150', top: 2},
+            {n: 'Champú sólido en pastilla', p: 55, i: '🧼', r: '4.7', v: '8,900', top: 3},
+            {n: 'Cera de abejas natural (Pisos)', p: 75, i: '🐝', r: '4.6', v: '5,230', top: 4},
+            {n: 'Esponjas de fibra vegetal', p: 15, i: '🧽', r: '4.5', v: '4,800', top: 5},
+            {n: 'Pasta de dientes orgánica', p: 40, i: '🦷', r: '4.8', v: '4,100', top: 6},
+            {n: 'Limpiador inodoros bio', p: 38, i: '🚽', r: '4.4', v: '3,900', top: 7},
+            {n: 'Cesto de mimbre natural', p: 120, i: '🧺', r: '4.9', v: '2,500', top: 8}
+        ];
+
+        function cargarVendidos() {
+            const container = document.getElementById('contenedor-vendidos');
+            masVendidos.forEach(p => {
+                container.innerHTML += `
+                    <div class="tarjeta-best">
+                        <div class="badge-best">nº ${p.top} más vendido</div>
+                        <div class="img-sim">${p.i}</div>
+                        <span class="rank">Ranking de popularidad</span>
+                        <span class="nombre-p">${p.n}</span>
+                        <div class="estrellas">
+                            ${'★'.repeat(Math.floor(p.r))}<span style="color:#ccc">★</span>
+                            <span class="ventas-count">${p.v} vendidos</span>
+                        </div>
+                        <span class="precio">Q${p.p}.00</span>
+                        <button class="btn-compra" onclick="agregar('${p.n}', ${p.p})">Agregar al carrito</button>
+                    </div>
+                `;
+            });
+        }
+
+        function agregar(nombre, precio) {
+            let carrito = JSON.parse(localStorage.getItem('miCarrito')) || [];
+            carrito.push({ nombre: nombre, precio: precio });
+            localStorage.setItem('miCarrito', JSON.stringify(carrito));
+            alert('¡' + nombre + ' se agregó a tu carrito!');
+        }
+
+        window.onload = cargarVendidos;
+    </script>
+</body>
+</html>

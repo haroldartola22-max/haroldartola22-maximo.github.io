@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecofresh - Contacto</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f3f3f3; color: #333; }
+        
+        header { background-color: #1a4a2e; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: white; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-size: 14px; }
+
+        /* Banner de correo según tu foto 3 */
+        .banner-contacto {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .banner-contacto h2 { color: #91d7ff; font-size: 28px; margin: 0; }
+
+        /* Sección POR QUÉ NOSOTROS (Fondo Verde Lima según foto 3) */
+        .por-que-nosotros {
+            background-color: #d4e157; /* Verde lima similar a la foto */
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .por-que-nosotros h2 { color: #f7f7f7; font-size: 32px; margin-bottom: 40px; text-transform: uppercase; }
+        .grid-beneficios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .beneficio-item { padding: 10px; }
+        .beneficio-item h3 { color: #222222; font-size: 18px; margin-bottom: 10px; }
+        .beneficio-item p { font-size: 15px; color: #1a4a2e; font-weight: 500; }
+
+        /* Footer / Sección Azul según foto 4 */
+        footer {
+            background-color: #0091ea; /* Azul vibrante de la foto */
+            color: white;
+            padding: 60px 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-col h2, .footer-col h3 { text-transform: uppercase; margin-bottom: 20px; }
+        .footer-col p { line-height: 1.6; font-size: 14px; }
+        .horarios { list-style: none; padding: 0; font-size: 14px; }
+        .horarios li { margin-bottom: 8px; }
+
+        .sub-footer {
+            background-color: #e1f5fe;
+            color: #555;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #b3e5fc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ECOFRESH</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="categoria.html">Categorías</a>
+            <a href="carrito.html">Carrito</a>
+        </nav>
+    </header>
+
+    <!-- Sección de Contacto Directo -->
+    <section class="banner-contacto">
+        <h2>contáctanos con 202507106@icvh.edu.gt</h2>
+    </section>
+
+    <!-- Sección Por qué nosotros (Basada en image_bb03f1.jpg) -->
+    <section class="por-que-nosotros">
+        <h2>POR QUÉ NOSOTROS</h2>
+        <div class="grid-beneficios">
+            <div class="beneficio-item">
+                <h3>Productos antibacteriales</h3>
+                <p>con un 99% de efectividad</p>
+            </div>
+            <div class="beneficio-item">
+                <h3>Ecológica Sustentable</h3>
+            </div>
+            <div class="beneficio-item">
+                <h3>Satisfacción 100% Garantizada</h3>
+            </div>
+            <div class="beneficio-item">
+                <h3>pensamos en ti y tu salud</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Información (Basada en image_bb03b8.jpg) -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Columna 1 -->
+            <div class="footer-col">
+                <h2>TUS EMPRESA DE CONFIANZA</h2>
+                <p>Cada fórmula que desarrollamos nace del respeto por la naturaleza. Nuestros productos de limpieza ecológicos combinan eficacia y responsabilidad, porque creemos que un hogar limpio no debería dejar huella en el planeta.</p>
+            </div>
+
+            <!-- Columna 2 -->
+            <div class="footer-col">
+                <h3>Oficina central</h3>
+                <p>Av. Fray Antonio Alcalde 10<br>44100 Guad., Jal., México</p>
+                <p style="margin-top:20px;">+52-1-33-12345678<br>info@misitio.com</p>
+            </div>
+
+            <!-- Columna 3 -->
+            <div class="footer-col">
+                <h3>Horario laboral</h3>
+                <ul class="horarios">
+                    <li>Lun - Vie: 8:00 - 20:00</li>
+                    <li>Sábado: 9:00 - 19:00</li>
+                    <li>Domingo: 9:00 - 20:00</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        Política de Privacidad | Términos y Condiciones | © 2035 Creado por los estudiantes de IDCVH
+    </div>
+
+</body>
+</html>
